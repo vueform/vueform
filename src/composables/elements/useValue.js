@@ -118,6 +118,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
   let unwatchDeps
   let unwatchData
   let unwatchLocale
+  let unwatchLanguage
   
   // ============ DEPENDENCIES =============
   
@@ -228,11 +229,48 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
       setCurrentExpression()
     })
 
+    watch(() => form$.value.multilingual, (multilingual) => {
+      if (multilingual) {
+        unwatchLanguage = watch(() => form$.value.selectedLanguage, () => {
+          resolveExpressionValue()
+        })
+      } else if (unwatchLanguage) {
+        unwatchLanguage()
+        unwatchLanguage = null
+      }
+    }, { immediate: true })
+
     unwatchData = watch(() => form$.value.availableData, () => {
       const fullData = flatten(form$.value.availableData)
+      const keys = Object.keys(fullData)
       
       for (const key of expressionDeps.value) {
-        dependencyData.value[key] = fullData[key]
+        if (fullData[key] !== undefined) {
+          dependencyData.value[key] = fullData[key]
+        } else {
+          const prefix = key + '.'
+          const nested = {}
+
+          for (const flatKey of keys) {
+            if (flatKey.startsWith(prefix)) {
+              const subPath = flatKey.slice(prefix.length).split('.')
+              let target = nested
+
+              for (let i = 0; i < subPath.length - 1; i++) {
+                if (target[subPath[i]] === undefined) {
+                  target[subPath[i]] = {}
+                }
+                target = target[subPath[i]]
+              }
+
+              target[subPath[subPath.length - 1]] = fullData[flatKey]
+            }
+          }
+
+          if (Object.keys(nested).length) {
+            dependencyData.value[key] = nested
+          }
+        }
       }
     }, { deep: true, immediate: true })
 
@@ -253,6 +291,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     if (unwatchData) unwatchData()
     if (unwatchDeps) unwatchDeps()
     if (unwatchLocale) unwatchLocale()
+    if (unwatchLanguage) unwatchLanguage()
   }
 
   if (expression.value) {
