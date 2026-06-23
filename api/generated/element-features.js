@@ -6296,7 +6296,7 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether a signature (as URL) was loaded to the element."
+          "description": "Whether a signature (as URL or base64) was loaded to the element."
         },
         "processing": {
           "public": true,
@@ -6645,6 +6645,39 @@ export default {
               ],
               "required": true,
               "description": "the color in HEX format"
+            }
+          }
+        },
+        "blobToBase64": {
+          "public": true,
+          "returns": [
+            [
+              "",
+              "string"
+            ]
+          ],
+          "description": "Converts a Blob to a base64 data URI string.",
+          "params": {
+            "blob": {
+              "types": [
+                "Blob"
+              ],
+              "required": true,
+              "description": "the Blob to convert"
+            }
+          }
+        },
+        "base64ToBlob": {
+          "public": true,
+          "returns": "Blob",
+          "description": "Converts a base64 data URI string to a Blob.",
+          "params": {
+            "base64": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "the base64 data URI string"
             }
           }
         },
