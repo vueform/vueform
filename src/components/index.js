@@ -60,6 +60,7 @@ import EditorElement from './elements/EditorElement'
 import TTextareaElement from './elements/TTextareaElement'
 import TTextElement from './elements/TTextElement'
 import TEditorElement from './elements/TEditorElement'
+import StarRatingElement from './elements/StarRatingElement'
 
 import CheckboxgroupCheckbox from './elements/partials/CheckboxgroupCheckbox'
 import FilePreview from './elements/partials/FilePreview'
@@ -126,6 +127,7 @@ export default {
   TTextareaElement,
   TTextElement,
   TEditorElement,
+  StarRatingElement,
   CheckboxgroupCheckbox,
   FilePreview,
   RadiogroupRadio,
@@ -192,6 +194,7 @@ export {
   TTextareaElement,
   TTextElement,
   TEditorElement,
+  StarRatingElement,
   CheckboxgroupCheckbox,
   FilePreview,
   RadiogroupRadio,

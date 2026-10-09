@@ -444,6 +444,7 @@ export default {
     wrapper: '',
     captcha: '',
   },
+  // TODO: confirm if it is required to add StarRatingElement classes.
   CheckboxElement: {
     ...checkbox,
     container: 'form-contains-link',

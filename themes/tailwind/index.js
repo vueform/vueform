@@ -64,6 +64,7 @@ import EditorElement from './../blank/templates/elements/EditorElement.vue'
 import TTextareaElement from './../blank/templates/elements/TTextareaElement.vue'
 import TTextElement from './../blank/templates/elements/TTextElement.vue'
 import TEditorElement from './../blank/templates/elements/TEditorElement.vue'
+import StarRatingElement from './../blank/templates/elements/StarRatingElement.vue'
 
 import CheckboxgroupCheckbox from './../blank/templates/elements/partials/CheckboxgroupCheckbox.vue'
 import CheckboxgroupCheckbox_tabs from './../blank/templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
@@ -146,6 +147,7 @@ const theme = {
     TTextareaElement,
     TTextElement,
     TEditorElement,
+    StarRatingElement,
 
     CheckboxgroupCheckbox,
     CheckboxgroupCheckbox_tabs,
@@ -230,6 +232,7 @@ export {
   TTextareaElement,
   TTextElement,
   TEditorElement,
+  StarRatingElement,
 
   CheckboxgroupCheckbox,
   CheckboxgroupCheckbox_tabs,
