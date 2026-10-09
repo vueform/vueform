@@ -65,6 +65,7 @@ import EditorElement from './templates/elements/EditorElement.vue'
 import TTextareaElement from './templates/elements/TTextareaElement.vue'
 import TTextElement from './templates/elements/TTextElement.vue'
 import TEditorElement from './templates/elements/TEditorElement.vue'
+import StarRatingElement from './templates/elements/StarRatingElement.vue'
 
 import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox.vue'
 import CheckboxgroupCheckbox_tabs from './templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
@@ -141,6 +142,7 @@ export default {
     TTextareaElement,
     TTextElement,
     TEditorElement,
+    StarRatingElement,
 
     CheckboxgroupCheckbox,
     CheckboxgroupCheckbox_tabs,

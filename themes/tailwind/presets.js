@@ -285,6 +285,7 @@ export default {
       ElementLabel: {
         container: 'hidden form-element-label',
       },
+      // TODO: confirm if it is required to add StarRatingElement classes.
       CheckboxElement: {
         wrapper_sm: 'form-p-input-sm',
         wrapper_md: 'form-p-input',
